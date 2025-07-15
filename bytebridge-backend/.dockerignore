@@ -1,0 +1,20 @@
+# Gradle-specific
+.gradle/
+build/
+!gradle/wrapper/gradle-wrapper.jar
+
+# IDEs
+.idea/
+*.iml
+*.ipr
+*.iws
+.vscode/
+
+# System files
+.DS_Store
+
+# Logs
+*.log
+
+# OS-specific
+Thumbs.db

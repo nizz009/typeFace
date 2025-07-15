@@ -1,0 +1,57 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:16
+    container_name: bytebridge_postgres
+    environment:
+      POSTGRES_USER: bytebridge_admin
+      POSTGRES_PASSWORD: bytebridge_admin_password
+      POSTGRES_DB: bytebridge
+    ports:
+      - "5433:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - bytebridge_net
+
+  backend:
+    build:
+      context: ./bytebridge-backend
+    container_name: bytebridge_backend
+    ports:
+      - "8080:8080"
+    volumes:
+      - uploads_data:/app/uploads
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/bytebridge
+      SPRING_DATASOURCE_USERNAME: bytebridge_admin
+      SPRING_DATASOURCE_PASSWORD: bytebridge_admin_password
+      MAX_FILE_SIZE: 300MB
+      MAX_REQUEST_SIZE: 400MB
+    depends_on:
+      - postgres
+    networks:
+      - bytebridge_net
+
+  frontend:
+    build:
+      context: ./bytebridge-frontend
+    container_name: bytebridge_frontend
+    ports:
+      - "3000:3000"
+    environment:
+      REACT_APP_API_BASE_URL: http://localhost:8080
+    stdin_open: true
+    tty: true
+    depends_on:
+      - backend
+    networks:
+      - bytebridge_net
+
+volumes:
+  postgres_data:
+  uploads_data:
+
+networks:
+  bytebridge_net:

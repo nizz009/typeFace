@@ -1,0 +1,25 @@
+# Root-level ignores
+.DS_Store
+.idea/
+*.iml
+
+# ByteBridge Backend (Spring Boot - Java)
+bytebridge-backend/target/
+bytebridge-backend/.idea/
+bytebridge-backend/.classpath
+bytebridge-backend/.project
+bytebridge-backend/.settings/
+bytebridge-backend/*.log
+bytebridge-backend/.gradle
+bytebridge-backend/build/
+
+# ByteBridge Frontend (React - Node.js)
+bytebridge-frontend/node_modules/
+bytebridge-frontend/.env
+bytebridge-frontend/.env.local
+bytebridge-frontend/build/
+bytebridge-frontend/.DS_Store
+bytebridge-frontend/.idea/
+bytebridge-frontend/npm-debug.log*
+bytebridge-frontend/yarn-debug.log*
+bytebridge-frontend/yarn-error.log*

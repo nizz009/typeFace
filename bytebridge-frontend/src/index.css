@@ -1,0 +1,75 @@
+:root {
+  --dark-background: #1a202c;
+  --dark-surface: #2d3748;
+  --text-primary: #e2e8f0;
+  --text-secondary: #a0aec0;
+  --accent-blue: #63b3ed;
+  --accent-blue-hover: #4299e1;
+  --accent-red: #fc8181;
+  --accent-red-hover: #e53e3e;
+  --accent-green: #68d391;
+  --accent-green-hover: #48bb78;
+  --border-color: #4a5568;
+  --shadow-color: rgba(0, 0, 0, 0.4);
+}
+
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: var(--dark-background);
+  color: var(--text-primary);
+  line-height: 1.6;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.main-content {
+  flex-grow: 1;
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  font-weight: 500;
+}
+
+.button.primary {
+  background-color: var(--accent-blue);
+  color: var(--dark-background);
+}
+
+.button.primary:hover {
+  background-color: var(--accent-blue-hover);
+}
+
+.button.secondary {
+  background-color: var(--dark-surface);
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
+}
+
+.button.secondary:hover {
+  background-color: var(--border-color);
+}
+
+.error-message {
+  color: var(--accent-red);
+  margin-top: 10px;
+  font-size: 0.9em;
+  background-color: rgba(252, 129, 129, 0.1);
+  padding: 8px 12px;
+  border-radius: 4px;
+}

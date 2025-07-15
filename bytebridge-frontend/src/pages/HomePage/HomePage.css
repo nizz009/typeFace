@@ -1,0 +1,30 @@
+.homepage-container {
+  text-align: center;
+  padding: 80px 20px;
+  min-height: calc(100vh - 100px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.homepage-container h1 {
+  font-size: 3.8em;
+  color: var(--accent-blue);
+  margin-bottom: 25px;
+  letter-spacing: 1px;
+  text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.homepage-container p {
+  font-size: 1.4em;
+  color: var(--text-secondary);
+  margin-bottom: 40px;
+  max-width: 700px;
+}
+
+.homepage-actions {
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+}

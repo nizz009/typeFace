@@ -1,0 +1,43 @@
+spring:
+  # JPA/PostgreSQL Configuration
+  jpa:
+    hibernate:
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.CamelCaseToUnderscoresNamingStrategy
+      ddl-auto: update # Makes Hibernate automatically update DB schema when entity classes change (should be set to "validate" for production - it will only validate that the schema matches the entities)
+    show-sql: true # Makes Hibernate print all sql queries in logs/console
+    database-platform: org.hibernate.dialect.PostgreSQLDialect # Hibernate uses PostgreSQL dialects, syntax, etc.
+
+  # PostgreSQL DataSource
+  datasource:
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5433/bytebridge}
+    username: ${SPRING_DATASOURCE_USERNAME:bytebridge_admin}
+    password: ${SPRING_DATASOURCE_PASSWORD:bytebridge_admin_password}
+    driver-class-name: org.postgresql.Driver
+
+  # File Upload Configuration
+  servlet:
+    multipart:
+      max-file-size: ${MAX_FILE_SIZE:300MB}
+      max-request-size: ${MAX_REQUEST_SIZE:400MB}
+      enabled: true
+
+# JWT Configuration
+jwt:
+  secret: myVeryLongSecretKeyThatIsAtLeast64CharactersLongForHS512AlgorithmSecurity
+  expiration: 86400000 # 24 hours in milliseconds (1000 * 60 * 60 * 24)
+
+# File Storage Configuration
+file:
+  upload-dir: uploads
+
+# Logging Configuration
+logging:
+  level:
+    root: INFO
+#    com:
+#      nizz:
+#        ByteBridge: DEBUG
+#    org:
+#      springframework: DEBUG
+#      hibernate: DEBUG

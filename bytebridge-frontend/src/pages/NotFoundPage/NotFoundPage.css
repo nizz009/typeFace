@@ -1,0 +1,62 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+.not-found-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  color: #a7b1bc;
+  font-family: 'Arial', sans-serif;
+  text-align: center;
+  padding: 20px;
+}
+
+.not-found-title {
+  font-size: 8em;
+  margin-bottom: 0.2em;
+  color: #e74c3c;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.not-found-message {
+  font-size: 1.5em;
+  margin-bottom: 1.5em;
+  line-height: 1.4;
+}
+
+.not-found-home-link {
+  display: inline-block;
+  padding: 12px 25px;
+  background-color: #007bff;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  font-size: 1.1em;
+  transition: background-color 0.3s ease;
+}
+
+.not-found-home-link:hover {
+  background-color: #0056b3;
+}
+
+@media (max-width: 600px) {
+  .not-found-title {
+    font-size: 6em;
+  }
+  .not-found-message {
+    font-size: 1.2em;
+  }
+  .not-found-home-link {
+    padding: 10px 20px;
+    font-size: 1em;
+  }
+}
