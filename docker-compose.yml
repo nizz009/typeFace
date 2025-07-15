@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   postgres:
-    image: postgres:16
+    image: postgres:16-alpine
     container_name: bytebridge_postgres
     environment:
       POSTGRES_USER: bytebridge_admin
@@ -14,10 +14,16 @@ services:
       - postgres_data:/var/lib/postgresql/data
     networks:
       - bytebridge_net
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U bytebridge_admin -d bytebridge"]
+      interval: 1s
+      timeout: 1s
+      retries: 3
 
   backend:
     build:
       context: ./bytebridge-backend
+      dockerfile: Dockerfile
     container_name: bytebridge_backend
     ports:
       - "8080:8080"
@@ -30,13 +36,16 @@ services:
       MAX_FILE_SIZE: 300MB
       MAX_REQUEST_SIZE: 400MB
     depends_on:
-      - postgres
+      postgres:
+        condition: service_healthy
     networks:
       - bytebridge_net
+    restart: unless-stopped
 
   frontend:
     build:
       context: ./bytebridge-frontend
+      dockerfile: Dockerfile
     container_name: bytebridge_frontend
     ports:
       - "3000:3000"
@@ -48,6 +57,7 @@ services:
       - backend
     networks:
       - bytebridge_net
+    restart: unless-stopped
 
 volumes:
   postgres_data:
@@ -55,3 +65,4 @@ volumes:
 
 networks:
   bytebridge_net:
+    driver: bridge
